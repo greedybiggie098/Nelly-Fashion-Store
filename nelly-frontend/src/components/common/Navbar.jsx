@@ -25,6 +25,16 @@ const Navbar = () => {
     setDropdownOpen(false);
   };
 
+  const closeMobileMenu = () => {
+    const navbarContent = document.getElementById('navbarContent');
+    if (navbarContent && navbarContent.classList.contains('show')) {
+      const toggler = document.querySelector('.navbar-toggler');
+      if (toggler && window.getComputedStyle(toggler).display !== 'none') {
+        toggler.click();
+      }
+    }
+  };
+
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -45,7 +55,7 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg glass-nav sticky-top py-3" style={{ zIndex: 1030 }}>
       <div className="container">
-        <Link className="navbar-brand d-flex align-items-center" to="/">
+        <Link className="navbar-brand d-flex align-items-center" to="/" onClick={closeMobileMenu}>
           <img 
             src="/nelly-icon.svg" 
             alt="NELLY" 
@@ -65,27 +75,27 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarContent">
           <ul className="navbar-nav mx-auto mb-2 mb-lg-0 text-uppercase-tracking gap-4 text-center">
             <li className="nav-item px-2">
-              <Link className="nav-link" to="/">
+              <Link className="nav-link" to="/" onClick={closeMobileMenu}>
                 Home
               </Link>
             </li>
             <li className="nav-item px-2">
-              <Link className="nav-link link-hover-underline" to="/collections">
+              <Link className="nav-link link-hover-underline" to="/collections" onClick={closeMobileMenu}>
                 Collections
               </Link>
             </li>
             <li className="nav-item px-2">
-              <Link className="nav-link link-hover-underline" to="/sale">
+              <Link className="nav-link link-hover-underline" to="/sale" onClick={closeMobileMenu}>
                 Sale
               </Link>
             </li>
             <li className="nav-item px-2">
-              <Link className="nav-link link-hover-underline" to="/about">
+              <Link className="nav-link link-hover-underline" to="/about" onClick={closeMobileMenu}>
                 About
               </Link>
             </li>
             <li className="nav-item px-2">
-              <Link className="nav-link link-hover-underline" to="/contact">
+              <Link className="nav-link link-hover-underline" to="/contact" onClick={closeMobileMenu}>
                 Contact
               </Link>
             </li>
@@ -136,7 +146,7 @@ const Navbar = () => {
                     {/* Admin Dashboard - Only for Admins */}
                     {user?.role === 'admin' && (
                       <li>
-                        <Link className="dropdown-item py-2 px-3 d-flex align-items-center" to="/admin/dashboard" onClick={closeDropdown}>
+                        <Link className="dropdown-item py-2 px-3 d-flex align-items-center" to="/admin/dashboard" onClick={() => { closeDropdown(); closeMobileMenu(); }}>
                           <i className="bi bi-speedometer2 me-2" style={{ fontSize: '1rem', color: '#667eea' }}></i>
                           <span className="fw-medium" style={{ fontSize: '0.875rem' }}>Admin Dashboard</span>
                         </Link>
@@ -147,7 +157,7 @@ const Navbar = () => {
                     <li>
                       <button 
                         className="dropdown-item py-2 px-3 d-flex align-items-center text-danger w-100 border-0 bg-transparent text-start" 
-                        onClick={() => { closeDropdown(); handleLogout(); }}
+                        onClick={() => { closeDropdown(); closeMobileMenu(); handleLogout(); }}
                         style={{ cursor: 'pointer' }}
                       >
                         <i className="bi bi-box-arrow-right me-2" style={{ fontSize: '1rem' }}></i>
@@ -158,7 +168,7 @@ const Navbar = () => {
                 </div>
 
                 {/* Cart Icon */}
-                <Link to="/cart" className="text-dark fs-5 position-relative">
+                <Link to="/cart" className="text-dark fs-5 position-relative" onClick={closeMobileMenu}>
                   <i className="bi bi-bag"></i>
                   {getCartCount() > 0 && (
                     <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style={{ fontSize: '0.6rem' }}>
@@ -168,7 +178,7 @@ const Navbar = () => {
                 </Link>
               </>
             ) : (
-              <Link to="/login" className="btn btn-premium px-4 text-decoration-none border-0" style={{ boxShadow: 'none' }}>
+              <Link to="/login" className="btn btn-premium px-4 text-decoration-none border-0" style={{ boxShadow: 'none' }} onClick={closeMobileMenu}>
                 Login
               </Link>
             )}
