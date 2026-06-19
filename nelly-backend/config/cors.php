@@ -1,6 +1,17 @@
 <?php
 // Allow CORS for React frontend
-header("Access-Control-Allow-Origin: http://localhost:5173");
+$allowedOrigins = [
+    'http://localhost:5173',
+    'https://nelly-fashion-store.vercel.app'
+];
+
+$origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
+
+if (in_array($origin, $allowedOrigins)) {
+    header("Access-Control-Allow-Origin: " . $origin);
+} else {
+    header("Access-Control-Allow-Origin: http://localhost:5173");
+}
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Access-Control-Allow-Credentials: true");
