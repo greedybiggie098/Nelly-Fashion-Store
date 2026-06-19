@@ -1,0 +1,39 @@
+/* Account Layout */
+.account-layout {
+  min-height: 100vh;
+  background: var(--bg-secondary);
+}
+
+.account-main {
+  min-height: 100vh;
+  transition: margin-left var(--transition-slow);
+}
+
+@media (min-width: 992px) {
+  .account-main-shifted {
+    margin-left: 280px;
+  }
+}
+
+.account-content {
+  padding: 2rem;
+  min-height: calc(100vh - 73px);
+}
+
+.account-content-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+  .account-content {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .account-content {
+    padding: 1rem;
+  }
+}

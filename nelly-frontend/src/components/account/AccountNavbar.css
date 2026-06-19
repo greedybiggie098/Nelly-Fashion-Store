@@ -1,0 +1,165 @@
+/* ============================================
+   ACCOUNT NAVBAR - PREMIUM DESIGN
+   ============================================ */
+
+.account-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+  background: white;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.account-navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  max-width: 100%;
+}
+
+/* Left Side */
+.account-navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.account-navbar-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: #F8FAFC;
+  color: #0F172A;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1.5rem;
+}
+
+.account-navbar-toggle:hover {
+  background: #F1F5F9;
+  transform: scale(1.05);
+}
+
+@media (max-width: 991px) {
+  .account-navbar-toggle {
+    display: flex;
+  }
+}
+
+.account-navbar-title h5 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #0F172A;
+  margin: 0;
+}
+
+@media (max-width: 767px) {
+  .account-navbar-title {
+    display: none;
+  }
+}
+
+/* Right Side */
+.account-navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.account-navbar-action {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  background: #F8FAFC;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 10px;
+  text-decoration: none;
+  color: #0F172A;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.account-navbar-action:hover {
+  background: white;
+  border-color: rgba(124, 58, 237, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  color: #0F172A;
+}
+
+.account-navbar-action i {
+  font-size: 1.125rem;
+}
+
+.account-navbar-action-label {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .account-navbar-action-label {
+    display: inline;
+  }
+}
+
+.account-navbar-store-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  background: linear-gradient(135deg, #7C3AED 0%, #EC4899 100%);
+  border: none;
+  border-radius: 10px;
+  text-decoration: none;
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px -1px rgba(124, 58, 237, 0.3);
+}
+
+.account-navbar-store-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(124, 58, 237, 0.4);
+  color: white;
+}
+
+.account-navbar-store-btn i {
+  font-size: 1.125rem;
+}
+
+.account-navbar-store-btn span {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .account-navbar-store-btn span {
+    display: inline;
+  }
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+  .account-navbar-container {
+    padding: 0.75rem 1rem;
+  }
+
+  .account-navbar-right {
+    gap: 0.5rem;
+  }
+
+  .account-navbar-action,
+  .account-navbar-store-btn {
+    padding: 0.5rem 0.75rem;
+  }
+}
