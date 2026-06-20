@@ -8,15 +8,23 @@ class Database {
     public $conn;
 
     public function __construct() {
-        $envFile = __DIR__ . '/../.env';
-        if (file_exists($envFile)) {
-            $env = parse_ini_file($envFile);
-            if ($env !== false) {
-                if (isset($env['DB_HOST'])) $this->host = $env['DB_HOST'];
-                if (isset($env['DB_NAME'])) $this->db_name = $env['DB_NAME'];
-                if (isset($env['DB_USER'])) $this->username = $env['DB_USER'];
-                if (isset($env['DB_PASS'])) $this->password = $env['DB_PASS'];
-                if (isset($env['DB_CONNECTION'])) $this->dbType = $env['DB_CONNECTION'];
+        if (getenv('DB_HOST')) {
+            $this->host = getenv('DB_HOST');
+            if (getenv('DB_NAME')) $this->db_name = getenv('DB_NAME');
+            if (getenv('DB_USER')) $this->username = getenv('DB_USER');
+            if (getenv('DB_PASS')) $this->password = getenv('DB_PASS');
+            if (getenv('DB_CONNECTION')) $this->dbType = getenv('DB_CONNECTION');
+        } else {
+            $envFile = __DIR__ . '/../.env';
+            if (file_exists($envFile)) {
+                $env = parse_ini_file($envFile);
+                if ($env !== false) {
+                    if (isset($env['DB_HOST'])) $this->host = $env['DB_HOST'];
+                    if (isset($env['DB_NAME'])) $this->db_name = $env['DB_NAME'];
+                    if (isset($env['DB_USER'])) $this->username = $env['DB_USER'];
+                    if (isset($env['DB_PASS'])) $this->password = $env['DB_PASS'];
+                    if (isset($env['DB_CONNECTION'])) $this->dbType = $env['DB_CONNECTION'];
+                }
             }
         }
     }
