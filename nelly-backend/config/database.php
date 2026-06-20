@@ -34,8 +34,9 @@ class Database {
 
         try {
             $dsn = "";
+            $port = getenv('DB_PORT') ?: '5432';
             if ($this->dbType === 'pgsql') {
-                $dsn = "pgsql:host=" . $this->host . ";port=5432;dbname=" . $this->db_name;
+                $dsn = "pgsql:host=" . $this->host . ";port=" . $port . ";dbname=" . $this->db_name;
             } else {
                 $dsn = "mysql:host=" . $this->host . ";dbname=" . $this->db_name;
             }
