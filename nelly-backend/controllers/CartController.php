@@ -31,7 +31,7 @@ class CartController {
         $insert_stmt->bindParam(':user_id', $user_id);
         $insert_stmt->execute();
 
-        return $this->conn->lastInsertId();
+        return $this->conn->lastInsertId($this->conn->getAttribute(PDO::ATTR_DRIVER_NAME) === 'pgsql' ? 'cart_id_seq' : null);
     }
 
     public function getCart() {

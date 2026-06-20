@@ -67,7 +67,7 @@ class AdminProductController {
         $stmt->bindParam(':discount_percentage', $discount);
 
         if ($stmt->execute()) {
-            $productId = $this->conn->lastInsertId();
+            $productId = $this->conn->lastInsertId($this->conn->getAttribute(PDO::ATTR_DRIVER_NAME) === 'pgsql' ? 'products_id_seq' : null);
             $this->adminController->logActivity('product_create', "Created product: {$data['name']} (ID: $productId)");
             
             return [

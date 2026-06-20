@@ -71,7 +71,7 @@ class AddressController {
                 return [
                     'success' => true,
                     'message' => 'Address added successfully',
-                    'address_id' => $this->conn->lastInsertId()
+                    'address_id' => $this->conn->lastInsertId($this->conn->getAttribute(PDO::ATTR_DRIVER_NAME) === 'pgsql' ? 'addresses_id_seq' : null)
                 ];
             }
 

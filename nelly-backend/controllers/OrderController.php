@@ -38,7 +38,7 @@ class OrderController {
             $order_stmt->bindParam(':shipping_address', $data['shipping_address']);
             $order_stmt->execute();
 
-            $order_id = $this->conn->lastInsertId();
+            $order_id = $this->conn->lastInsertId($this->conn->getAttribute(PDO::ATTR_DRIVER_NAME) === 'pgsql' ? 'orders_id_seq' : null);
 
             // Get cart items
             $cart_query = "SELECT ci.*, p.price, p.discount_percentage

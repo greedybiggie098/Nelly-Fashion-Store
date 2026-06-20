@@ -23,7 +23,7 @@ class WishlistController {
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':user_id', $userId);
             $stmt->execute();
-            return $this->conn->lastInsertId();
+            return $this->conn->lastInsertId($this->conn->getAttribute(PDO::ATTR_DRIVER_NAME) === 'pgsql' ? 'wishlist_id_seq' : null);
         }
 
         return $wishlist['id'];

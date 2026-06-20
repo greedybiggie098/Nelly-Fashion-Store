@@ -63,7 +63,7 @@ class AdminCategoryController {
         $stmt->bindParam(':description', $description);
 
         if ($stmt->execute()) {
-            $categoryId = $this->conn->lastInsertId();
+            $categoryId = $this->conn->lastInsertId($this->conn->getAttribute(PDO::ATTR_DRIVER_NAME) === 'pgsql' ? 'categories_id_seq' : null);
             $this->adminController->logActivity('category_create', "Created category: {$data['name']} (ID: $categoryId)");
             
             return [

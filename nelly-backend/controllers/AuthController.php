@@ -43,7 +43,8 @@ class AuthController {
         $stmt->bindParam(":password", $hashed_password);
 
         if ($stmt->execute()) {
-            $user_id = $this->conn->lastInsertId();
+            $driver = $this->conn->getAttribute(PDO::ATTR_DRIVER_NAME);
+            $user_id = $this->conn->lastInsertId($driver === 'pgsql' ? 'users_id_seq' : null);
             
             // Create cart for user
             $cart_query = "INSERT INTO cart (user_id) VALUES (:user_id)";

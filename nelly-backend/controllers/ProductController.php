@@ -132,7 +132,7 @@ class ProductController {
         $stmt->bindParam(':discount_percentage', $data['discount_percentage']);
 
         if ($stmt->execute()) {
-            return ['success' => true, 'message' => 'Product created', 'id' => $this->conn->lastInsertId()];
+            return ['success' => true, 'message' => 'Product created', 'id' => $this->conn->lastInsertId($this->conn->getAttribute(PDO::ATTR_DRIVER_NAME) === 'pgsql' ? 'products_id_seq' : null)];
         }
 
         return ['success' => false, 'message' => 'Failed to create product'];
